@@ -1,14 +1,7 @@
 import React from "react";
-import ClassCounter from "./Components/ClassCounter";
-import HookCounter from "./Components/HookCounter";
 
 function App() {
-    return (
-        <div className="App">
-            {/* <ClassCounter /> */}
-            <HookCounter />
-        </div>
-    );
+    return <div className="App"></div>;
 }
 
 export default App;
