@@ -1,6 +1,6 @@
 import React from "react";
 
-import ContextBasicUsage from "./Components/UseContextHook/ContextBasicUsage";
+import ContextBasicUsage from "./Components/UseContextHook/UsingContextHooks";
 
 export const UserContext = React.createContext();
 export const ChannelContext = React.createContext();

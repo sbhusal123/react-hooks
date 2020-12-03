@@ -53,15 +53,18 @@ function ComponentC() {
         >
             ComponentC
             <UserContext.Consumer>
-                {contextData => {
-                    return <p>User context value {contextData}</p>;
+                {user => {
+                    return (
+                        <ChannelContext.Consumer>
+                                {channel => {
+                                        return (
+                                            <p>User - {user} , Channel - {channel}</p>
+                                        );
+                                }}
+                        <ChannelContext.Consumer/>
+                    );
                 }}
             </UserContext.Consumer>
-            <ChannelContext.Consumer>
-                {contextData => {
-                    return <p>Channel context value {contextData}</p>;
-                }}
-            </ChannelContext.Consumer>
         </div>
     );
 }
@@ -112,4 +115,36 @@ export default function ComponentA() {
            |                                                  |                                        |
            |                                                  |                                        |
            |- contains component C -------------> Import and Use the context(Consumer)-----------------|
+```
+
+# 1. Using Context Hooks
+
+-   No need to nest the context consumer when using hooks.
+
+**Above approach using context.**
+
+```js
+import React, { useContext } from "react";
+import { UserContext, ChannelContext } from "../../App";
+
+// Using Context Hooks
+function ComponentC() {
+    const user = useContext(UserContext);
+    const channel = useContext(ChannelContext);
+
+    return (
+        <div
+            style={{
+                border: "1px solid blue",
+                margin: "10% 20%",
+                width: "auto",
+                padding: "2%"
+            }}
+        >
+            ComponentC
+            <p>User - {user}</p>
+            <p>Channel - {channel}</p>
+        </div>
+    );
+}
 ```
