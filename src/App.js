@@ -1,11 +1,18 @@
 import React from "react";
 
-import DataFetching from "./Components/UseEffectHooks/FetchingData/SInglePostFetch";
+import ContextBasicUsage from "./Components/UseContextHook/ContextBasicUsage";
+
+export const UserContext = React.createContext();
+export const ChannelContext = React.createContext();
 
 function App() {
     return (
         <div className="App">
-            <DataFetching />
+            <UserContext.Provider value={"Surya Bhusal"}>
+                <ChannelContext.Provider value={"RGB"}>
+                    <ContextBasicUsage />
+                </ChannelContext.Provider>
+            </UserContext.Provider>
         </div>
     );
 }
