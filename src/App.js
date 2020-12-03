@@ -1,15 +1,11 @@
 import React from "react";
 
-import IntervalFunctional, {
-    IntervalClass
-} from "./Components/UseEffectHooks/CommonMistakes";
+import DataFetching from "./Components/UseEffectHooks/FetchingData/SInglePostFetch";
 
 function App() {
     return (
         <div className="App">
-            <IntervalClass />
-            <br />
-            <IntervalFunctional />
+            <DataFetching />
         </div>
     );
 }
