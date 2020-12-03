@@ -1,11 +1,15 @@
 import React from "react";
 
-import UseEffectWithUnmount from "./Components/UseEffectHooks/UnMountingCleanup/UseEffectWithUnmount";
+import IntervalFunctional, {
+    IntervalClass
+} from "./Components/UseEffectHooks/CommonMistakes";
 
 function App() {
     return (
         <div className="App">
-            <UseEffectWithUnmount />
+            <IntervalClass />
+            <br />
+            <IntervalFunctional />
         </div>
     );
 }

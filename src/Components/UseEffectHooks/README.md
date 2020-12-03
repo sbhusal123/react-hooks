@@ -123,3 +123,81 @@ useEffect(() => {
     };
 }, []);
 ```
+
+## 4. Things to keep in mind.
+
+```python
+        If you think dependency array is a way to specifiy
+        when you want to rerun the effect, the you're
+        going to run into the problem.
+
+        Instead dependency array can be thought of as a way to let react know
+        about everything that the effect must watch for changes.
+```
+
+-   Instead of using single useEffect, use multiple effect with the appropriate dependencies.
+
+-   If a useEffect performs a functional call with some state variables. That state variable needs be passed as
+    depenecncy if necessary.
+
+```js
+function IntervalFunctional() {
+    const [count, setCount] = useState(0);
+
+    const tick = () => {
+        setCount(count + 1);
+    };
+
+    useEffect(() => {
+        const interval = setInterval(tick, 1000);
+
+        return () => {
+            clearInterval(interval);
+        };
+    }, [count]);
+
+    return (
+        <div>
+            <h2 align="center">{count}</h2>
+        </div>
+    );
+}
+
+export default IntervalFunctional;
+```
+
+The purpose of above code is to build a simple timer. As seen, we've a side effect that watches any chanages
+for count state variable(dependency). The approach above can lead us to the problem as count state is changed, it allocates new memory location for interval variable.
+
+Another problem with the approach is `setCount(count + 1)`. I.e it doesn't uses previous state value to update.
+
+**Solution:**
+
+```js
+function IntervalFunctional() {
+    const [count, setCount] = useState(0);
+
+    // increament previous value by 1
+    const tick = () => {
+        setCount(prevCount => prevCount + 1);
+        //setCount(count + 1); won't work the way intended
+    };
+
+    // Bind on initial render only
+    useEffect(() => {
+        const interval = setInterval(tick, 1000);
+
+        return () => {
+            clearInterval(interval);
+        };
+    }, []);
+
+    return (
+        <div>
+            <br />
+            <p align="center">From Functional Component</p>
+            <h2 align="center">{count}</h2>
+        </div>
+    );
+}
+```
