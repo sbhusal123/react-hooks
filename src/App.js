@@ -1,10 +1,10 @@
 import React from "react";
-import UseReducerBasicUsage from "./Components/UseReducerHook/BasicUsage";
+import ComplexReducerWithObject from "./Components/UseReducerHook/ComplexReducerWithObject";
 
 function App() {
     return (
         <div className="App">
-            <UseReducerBasicUsage />
+            <ComplexReducerWithObject />
         </div>
     );
 }
