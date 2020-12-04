@@ -1,10 +1,10 @@
 import React from "react";
-import Basic from "./Components/UseMemoHooks/Basics";
+import AdvanceUsage from "./Components/useRefHook/AdvanceUsage";
 
 function App() {
     return (
         <div className="App">
-            <Basic />
+            <AdvanceUsage />
         </div>
     );
 }
