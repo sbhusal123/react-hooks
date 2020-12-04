@@ -1,11 +1,10 @@
 import React from "react";
-import Counter from "./Components/customHook/Counter";
+import UserForm from "./Components/customHook/UserForm";
 
 function App() {
     return (
         <div className="App">
-            <Counter />
-            <Counter />
+            <UserForm />
         </div>
     );
 }
