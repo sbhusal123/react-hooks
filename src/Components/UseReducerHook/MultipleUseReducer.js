@@ -1,47 +1,3 @@
-## Use-Reducer
-
--   Hook used for state management. Alternative to useState hooks.
--   Used to manage large and dependent state for functional component.
--   Similar to reduce method of the Array.Prototype.
--   Reducer takes the current state and the action to be handled and returns the new state.
-
-**Syntax**
-
-```js
-import { useReducer } from "react";
-
-
-const initialState = ....;
-/*
-    Reducer function takes currentState and action
-*/
-const reducerFunction = (currentState, action) => {
-    switch(action){
-        ......
-    }
-}
-
-const foo = () => {
-    // Returns the state and dispatch by which we can execute the state change
-    const [state, dispatch] = useReducer(reducerFunction, initialState);
-
-    return (
-        <div>
-            <button onClick={() => dispatch('action')} />
-        </div>
-    )
-};
-```
-
-## 2. Multiple Reducer
-
--   Can be used for the component with same state transition.
--   Reduces code duplication to manage state.
--   Same reducer function and initialState can be used.
-
-**Example:**
-
-```js
 import React, { useReducer } from "react";
 
 // Reducer
@@ -50,6 +6,10 @@ const reducer = (state, action) => {
     switch (action) {
         case "increament":
             return state + 1;
+        case "decreament":
+            return state - 1;
+        case "reset":
+            return initialState;
         default:
             return state;
     }
@@ -71,6 +31,20 @@ function MultipleReducer() {
                 >
                     IncreamentOne
                 </button>
+                <button
+                    onClick={() => {
+                        dispatch("decreament");
+                    }}
+                >
+                    DecreamentOne
+                </button>
+                <button
+                    onClick={() => {
+                        dispatch("reset");
+                    }}
+                >
+                    ResetOne
+                </button>
             </div>
             <br />
             <div>
@@ -82,6 +56,18 @@ function MultipleReducer() {
                 >
                     IncreamentTwo
                 </button>
+                <button
+                    onClick={() => {
+                        dispatchTwo("decreament");
+                    }}
+                >
+                    DecreamentTwo
+                </button>
+                <button
+                    onClick={() => {
+                        dispatchTwo("reset");
+                    }}
+                >
                     ResetTwo
                 </button>
             </div>
@@ -90,4 +76,3 @@ function MultipleReducer() {
 }
 
 export default MultipleReducer;
-```

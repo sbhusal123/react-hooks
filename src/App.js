@@ -1,10 +1,10 @@
 import React from "react";
-import ComplexReducerWithObject from "./Components/UseReducerHook/ComplexReducerWithObject";
+import MultipleUseReducer from "./Components/UseReducerHook/MultipleUseReducer";
 
 function App() {
     return (
         <div className="App">
-            <ComplexReducerWithObject />
+            <MultipleUseReducer />
         </div>
     );
 }
