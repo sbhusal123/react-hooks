@@ -92,7 +92,7 @@ function MultipleReducer() {
 export default MultipleReducer;
 ```
 
-## 1. Usage Wih useContext
+## 3. Usage Wih useContext
 
 -   Used for managing state and transition for nested component.
 -   Can be used to manage different component state in the common parent component.
@@ -214,4 +214,62 @@ function ComponentB() {
 }
 
 export default ComponentB;
+```
+
+## 4. Making Api Calls
+
+```js
+import React, { useEffect, useState, useReducer } from "react";
+import axios from "axios";
+
+const initialState = {
+    loading: true,
+    error: "",
+    post: {}
+};
+
+const reducer = (state, action) => {
+    switch (action.type) {
+        case "FETCH_SUCCESS":
+            return {
+                loading: false,
+                post: action.payload,
+                error: ""
+            };
+        case "FETCH_ERROR":
+            return {
+                loading: false,
+                post: [],
+                error: "Something went wrong.."
+            };
+        default:
+            return state;
+    }
+};
+
+function DataFetchingOne() {
+    const [state, disptach] = useReducer(reducer, initialState);
+
+    useEffect(() => {
+        axios
+            .get(`https://jsonplaceholder.typicode.com/posts/2`)
+            .then(res => {
+                disptach({ type: "FETCH_SUCCESS", payload: res.data });
+            })
+            .catch(err => {
+                disptach({ type: "FETCH_ERROR", payload: err.body });
+            });
+    }, []);
+
+    return (
+        <div>
+            <p align="center">
+                {state.loading ? "Loading..." : state.post.title}
+            </p>
+            <p align="center">{state.error == "" ? "" : state.error}</p>
+        </div>
+    );
+}
+
+export default DataFetchingOne;
 ```

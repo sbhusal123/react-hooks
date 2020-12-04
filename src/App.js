@@ -1,10 +1,10 @@
 import React from "react";
-import ParentComponent from "./Components/UseReducerHook/UsageWithUseContext/ParentComponent";
+import DataFetchingOne from "./Components/UseReducerHook/DataFetching/DataFetchingOne";
 
 function App() {
     return (
         <div className="App">
-            <ParentComponent />
+            <DataFetchingOne />
         </div>
     );
 }
