@@ -1,10 +1,10 @@
 import React from "react";
-import DataFetchingOne from "./Components/UseReducerHook/DataFetching/DataFetchingOne";
+import Basic from "./Components/UseCallBackHook/BasicUsage/Basic";
 
 function App() {
     return (
         <div className="App">
-            <DataFetchingOne />
+            <Basic />
         </div>
     );
 }
