@@ -1,10 +1,11 @@
 import React from "react";
-import AdvanceUsage from "./Components/useRefHook/AdvanceUsage";
+import Counter from "./Components/customHook/Counter";
 
 function App() {
     return (
         <div className="App">
-            <AdvanceUsage />
+            <Counter />
+            <Counter />
         </div>
     );
 }
