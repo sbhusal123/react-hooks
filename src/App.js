@@ -1,10 +1,10 @@
 import React from "react";
-import MultipleUseReducer from "./Components/UseReducerHook/MultipleUseReducer";
+import ParentComponent from "./Components/UseReducerHook/UsageWithUseContext/ParentComponent";
 
 function App() {
     return (
         <div className="App">
-            <MultipleUseReducer />
+            <ParentComponent />
         </div>
     );
 }

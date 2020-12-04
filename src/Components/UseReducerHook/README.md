@@ -91,3 +91,127 @@ function MultipleReducer() {
 
 export default MultipleReducer;
 ```
+
+## 1. Usage Wih useContext
+
+-   Used for managing state and transition for nested component.
+-   Can be used to manage different component state in the common parent component.
+
+**Example**
+
+```js
+// Parent Component
+import React, { useReducer } from "react";
+import ComponentA from "./ComponentA";
+import ComponentB from "./ComponentB";
+
+export const CountContext = React.createContext();
+
+const initialState = 0;
+const reducer = (state, action) => {
+    switch (action) {
+        case "increament":
+            return state + 1;
+        case "decreament":
+            return state - 1;
+        case "reset":
+            return initialState;
+        default:
+            return state;
+    }
+};
+
+function ParentComponent() {
+    const [count, dispatch] = useReducer(reducer, initialState);
+
+    return (
+        <CountContext.Provider value={{ count: count, dispatch: dispatch }}>
+            <div className="App" style={{ margin: "20%" }}>
+                Count - {count}
+                <ComponentA />
+                <ComponentB />
+            </div>
+        </CountContext.Provider>
+    );
+}
+
+export default ParentComponent;
+```
+
+```js
+// ComponentA
+import React, { useContext } from "react";
+import { CountContext } from "./ParentComponent";
+
+function ComponentA() {
+    const countContext = useContext(CountContext);
+
+    return (
+        <div>
+            <p>Component A</p>
+            <button
+                onClick={() => {
+                    countContext.dispatch("increament");
+                }}
+            >
+                Increament
+            </button>
+            <button
+                onClick={() => {
+                    countContext.dispatch("decreament");
+                }}
+            >
+                Decreament
+            </button>
+            <button
+                onClick={() => {
+                    countContext.dispatch("reset");
+                }}
+            >
+                Reset
+            </button>
+        </div>
+    );
+}
+
+export default ComponentA;
+```
+
+```js
+// ComponentB
+import React, { useContext } from "react";
+import { CountContext } from "./ParentComponent";
+
+function ComponentB() {
+    const countContext = useContext(CountContext);
+
+    return (
+        <div>
+            <p>Component B</p>
+            <button
+                onClick={() => {
+                    countContext.dispatch("increament");
+                }}
+            >
+                Increament
+            </button>
+            <button
+                onClick={() => {
+                    countContext.dispatch("decreament");
+                }}
+            >
+                Decreament
+            </button>
+            <button
+                onClick={() => {
+                    countContext.dispatch("reset");
+                }}
+            >
+                Reset
+            </button>
+        </div>
+    );
+}
+
+export default ComponentB;
+```
