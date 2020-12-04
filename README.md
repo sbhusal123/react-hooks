@@ -10,7 +10,7 @@
 -   [Custom Hooks](src/Components/customHook/README.md)
 
 > Every sub-folder inside `src/Components` contains the example for different use case.
-> [Explore](src/Component)
+> [Explore](https://github.com/sbhusal123/react-hooks/tree/main/src/Components)
 
 # More to Explore
 
