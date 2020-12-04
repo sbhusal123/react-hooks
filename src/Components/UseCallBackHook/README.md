@@ -1,4 +1,9 @@
-## useCallback and useMemo
+## useCallback
+
+Tl, DR;
+
+-   Use memo, memorizes the output of the function.
+-   Use calllback memorizes the function itself. Checks for reference equality.
 
 ### 1. How does the rendering occurs Rendering?
 
@@ -15,7 +20,7 @@
 
 ## 2. How does those hooks affects.
 
--   When using optimization hooks, after updating of component, previous dom reference and associated handler is not collected as a garbage(previous component and the new component is stored in memory).
+-   When using useCallback hooks, after updating of component, previous associated handler is not collected as a garbage(previous component and the new component is stored in memory).
 
 -   Now the output of the component before update and after update is compared and decided weather to re-render or not.
 
@@ -143,3 +148,29 @@ function _Count(props) {
 export const Button = React.memo(_Button);
 export const Count = React.memo(_Count);
 ```
+
+### 3. Difference Between useMemo and useCallback
+
+The main difference between the two is that 'useCallback' returns a memoized callback and 'useMemo' returns a memoized value that is the result of the function parameter. Every other re-render will then get a cached function.
+
+```js
+function foo() {
+    return "bar";
+}
+
+const memoizedCallback = useCallback(foo, []);
+const memoizedResult = useMemo(foo, []);
+
+memoizedCallback(); // 'bar'
+console.log(memoizedCallback);
+/* 
+ ƒ foo() {
+   return 'bar';
+ }
+*/
+
+console.log(memoizedResult); // 'bar'
+memoizedResult(); // 🔴 TypeError
+```
+
+[More at](https://medium.com/@jan.hesters/usecallback-vs-usememo-c23ad1dc60)

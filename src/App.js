@@ -1,5 +1,5 @@
 import React from "react";
-import Basic from "./Components/UseCallBackHook/BasicUsage/Basic";
+import Basic from "./Components/UseMemoHooks/Basics";
 
 function App() {
     return (
